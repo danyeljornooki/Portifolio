@@ -131,6 +131,12 @@ document.addEventListener("DOMContentLoaded", function () {
   function getMesAtual() {
     return new Date().getMonth() + 1;
   }
+  function getAnoAtual() {
+    return new Date().getFullYear();
+  }
+
+  console.log(getAnoAtual());
+
 
   function getNomeMes(mes) {
     const nomeMes = mesesNumericos[mes.toLowerCase()];
@@ -658,6 +664,7 @@ document.addEventListener("DOMContentLoaded", function () {
     return uuid;
   }
   // atualiza array
+
   function handleAdicionarConta() {
     const addBtn = document.getElementById("addBtn");
 
@@ -669,35 +676,99 @@ document.addEventListener("DOMContentLoaded", function () {
       let contador = JSON.parse(localStorage.getItem("contador")) || 0;
       contador++;
 
+
       const tipoConta = document.getElementById("tipoConta").value;
       const vencimento = new Date(document.getElementById("vencimento").value);
       const desconto = parseFloat(document.getElementById("desconto").value);
       const preco = parseFloat(document.getElementById("preco").value);
       const mesAtual = getMesAtual();
+      const anoAtual = getAnoAtual();
 
       let contasAtualizadas = [...todasContas];
 
+      if (vencimento.getFullYear() > anoAtual) {
+
+        let dataTemp = new Date(vencimento);
+
+        if (mesAtual <= 12) {
+          while (dataTemp.getMonth() + 1 > 12) {
+            console.log(i);
+
+            const id = generateUUID();
+
+            if (dataTemp.getMonth() === vencimento.getMonth()) {
+              break;
+            } else {
+              console.log(dataTemp);
+              
+              dataTemp.setMonth(dataTemp.getMonth() - 1);
+              // adicionarContaAoArray(
+              //   id,
+              //   contasAtualizadas,
+              //   tipoConta,
+              //   dataTemp,
+              //   desconto,
+              //   preco
+              // );
+            }
+
+          }
+        } else {
+          while (dataTemp.getMonth() + 1 > 12) {
+
+            console.log('aqui');
+            
+            const id = generateUUID();
+
+            if (dataTemp.getMonth() === vencimento.getMonth()) {
+              break;
+            } else {
+              console.log(dataTemp);
+
+              dataTemp.setMonth(dataTemp.getMonth() - 1);
+              // adicionarContaAoArray(
+              //   id,
+              //   contasAtualizadas,
+              //   tipoConta,
+              //   dataTemp,
+              //   desconto,
+              //   preco
+              // );
+            }
+
+          }
+        }
+
+      }
       if (vencimento.getMonth() + 1 > mesAtual) {
         let dataTemp = new Date(vencimento);
 
         while (dataTemp.getMonth() + 1 > mesAtual) {
+          console.log(vencimento.getMonth() + 1 > mesAtual);
+
           const id = generateUUID();
+          console.log(contasAtualizadas);
 
           if (dataTemp.getMonth() === mesAtual) {
             break;
           } else {
+            console.log(dataTemp);
+
             dataTemp.setMonth(dataTemp.getMonth() - 1);
-            adicionarContaAoArray(
-              id,
-              contasAtualizadas,
-              tipoConta,
-              dataTemp,
-              desconto,
-              preco
-            );
+            // adicionarContaAoArray(
+            //   id,
+            //   contasAtualizadas,
+            //   tipoConta,
+            //   dataTemp,
+            //   desconto,
+            //   preco
+            // );
           }
         }
+
       }
+
+
 
       // Adiciona a nova conta ao array de contas
       const id = generateUUID();

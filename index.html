@@ -4,15 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0 shrink-to-fit=no">
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
         integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/56cccbbade.js" crossorigin="anonymous"></script>
-
     <!-- Estilo customizado -->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
     <title>Danyel Jornooki | Programmer</title>
     <link rel="icon" href="assets/img/keyboard-solid.svg">
 
@@ -20,23 +20,26 @@
 
 <body>
     <header><!-- Header -->
-        <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top shadow-sm text-mint-green"> <!-- nav-->
-            <div class="container"> <!-- Container-->
+        <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top shadow-sm text-mint-green">
+            <div class="container">
                 <a href="#home" class="navbar-brand">
                     <i class="fa-solid fa-gamepad fa-xl text-mint-green"></i>
                 </a>
+
                 <button class="navbar-toggler btn" data-toggle="collapse" data-target="#nav-principal">
-                    <!-- hamburguer -->
-                    <i class="fas fa-bars text-dark"></i><!-- icon fontawesome-->
+                    <i class="fas fa-bars text-dark"></i>
                 </button>
-                <div class="collapse navbar-collapse " id="nav-principal"> <!-- nav collapse-->
+                <!-- links -->
+                <div class="collapse navbar-collapse " id="nav-principal">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
                             <a href="#hero" class="nav-link" data-lang-str="sobre">About</a>
                         </li>
+
                         <li class="nav-item">
                             <a href="#projects" class="nav-link" data-lang-str="projetos">Projects</a>
                         </li>
+
                         <li class="divisor"></li>
 
                         <li class="nav-item">
@@ -44,20 +47,21 @@
                         </li>
                     </ul>
                 </div>
-            </div> <!--Fim Container-->
-        </nav> <!-- fim nav-->
-    </header> <!-- Fim Header -->
+            </div>
+        </nav>
+    </header>
 
+    <!-- btn traduzir -->
     <span name="translate-buttom" data-lang="en" class="translate-buttom fixed-bottom rounded-circle mb-4">PT</span>
 
-    <section id="home" class="d-flex p-5 mt-md-5"> <!-- Seção -->
-        <div class="container align-self-center bg-gray"> <!-- Container-->
+    <!-- seção Home -->
+    <section id="home" class="d-flex p-5 mt-md-5">
+        <div class="container align-self-center bg-gray">
             <div class="row mb-5">
                 <div class="col-12 text-center justify-content-center">
                     <h1 class="font-weight-bold" data-lang-str="title_home">I am Danyel Jornooki</h1>
                     <h2 class="mb-4" data-lang-str="subtitle_home">Frontend Developer</h2>
                     <h4 data-lang-str="text_home">I code simple things, and i love what I do</h4>
-
                     <img src="assets/img/avatar.png" class="img-fluid w-25 mt-5 rounded-circle">
                 </div>
             </div>
@@ -66,8 +70,9 @@
 
     <img src="assets/img/background.svg" class="img-fluid img-cloud">
 
-    <section id="hero" class="bg-mint-green pt-5 pb-5"> <!-- Seção -->
-        <div class="container pb-5"> <!-- Container -->
+    <!-- Seção Hero -->
+    <section id="hero" class="bg-mint-green pt-5 pb-5">
+        <div class="container pb-5">
             <div class="text-center text-light">
                 <h2 data-lang-str="hi_intro">Hi, I’m Danyel.</h2>
                 <h3 data-lang-str="nice_to_meet_you">Nice to meet you.</h3>
@@ -79,32 +84,43 @@
         </div>
     </section>
 
-    <section id="about" class="pt-5 pb-5 bg-white"> <!-- Seção -->
-        <div class="container" style="margin-top: -7em"> <!-- Container -->
+    <!-- Seção Sobre -->
+    <section id="about" class="pt-5 pb-5 bg-white">
+        <div class="container" style="margin-top: -7em">
             <div class="text-center text-dark">
                 <div class="row bg-white pt-5 pb-5">
+
+                    <!-- card Designer -->
                     <div class="col-md-4 d-flex flex-column">
                         <span class="bg-mint-green border-radius-icon align-self-center"><i
                                 class="fa-solid fa-layer-group fa-xl text-light"></i></span>
+
                         <h3 data-lang-str="designer_title">Designer</h3>
                         <p data-lang-str="designer_text">I appreciate straightforward content organization, minimalistic
                             design, and intentional user interactions</p>
+
                         <h4 data-lang-str="design_interests">Some of my design interests:</h4>
                         <p data-lang-str="design_tools">UX, UI, Web, Apps</p>
+
                         <h4 data-lang-str="design_tools_title">Design Tools:</h4>
                         <ul class="list-unstyled">
                             <li>Figma</li>
                             <li>Adobe XD</li>
                         </ul>
                     </div>
+
+                    <!-- Card FrontEnd -->
                     <div class="col-md-4 border-right border-left d-flex flex-column">
                         <span class="bg-mint-green border-radius-icon align-self-center"><i
                                 class="fa-solid fa-code fa-xl text-light "></i></span>
+
                         <h3 data-lang-str="frontend_dev_title">Frontend Developer</h3>
                         <p data-lang-str="frontend_dev_text">I enjoy developing projects from scratch and turning
                             concepts into reality in the browser.</p>
+
                         <h4 data-lang-str="languages">Languages:</h4>
                         <p data-lang-str="languages_list">CSS, JavaScript, API, WordPress</p>
+
                         <h4 data-lang-str="tools_title">Design Tools:</h4>
                         <ul class="list-unstyled">
                             <li>BootStrap</li>
@@ -113,12 +129,16 @@
                             <li>VS Code</li>
                         </ul>
                     </div>
+
+                    <!-- Card Estudo -->
                     <div class="col-md-4 d-flex flex-column">
                         <span class="bg-mint-green border-radius-icon align-self-center"><i
                                 class="fa-solid fa-graduation-cap fa-xl text-light"></i></span>
+
                         <h3 data-lang-str="study_title">Study</h3>
                         <p data-lang-str="study_text">I am passionate about learning and improving my skills to create
                             innovative solutions.</p>
+
                         <h4 data-lang-str="experiences">Experiences I'm looking for:</h4>
                         <p data-lang-str="experiences_list">Apache, PHP, MySQL, Git, IONIC</p>
                     </div>
@@ -127,6 +147,7 @@
         </div>
     </section>
 
+    <!-- Seção Projeto -->
     <section id="projects" class="pt-2 pb-5 border-bottom bg-white">
         <div class="container text-center">
             <div class="row">
@@ -134,6 +155,7 @@
                     <h2 class="mb-3" data-lang-str="my_landings">My Landings Pages</h2>
                 </div>
             </div>
+
             <div class="mb-5">
                 <!-- Html And CSS Section -->
                 <h3 class="mb-5" data-lang-str="only_html_css">Only Html And CSS</h3>
@@ -141,6 +163,7 @@
                     <div class="carousel-inner ">
                         <div class="carousel-item active">
                             <div class="row">
+
                                 <!-- Card IA -->
                                 <div class="col">
                                     <a href="projeot-landingpage-IA/index.html" class="btn">
@@ -172,11 +195,13 @@
                                         </div>
                                     </a>
                                 </div>
+
                             </div>
                         </div>
 
                         <div class="carousel-item">
                             <div class="row">
+
                                 <!-- Card Travel -->
                                 <div class="col-md-6">
                                     <a href="projeto-landingpage-travel/index.html" class="btn">
@@ -193,6 +218,7 @@
                                         </div>
                                     </a>
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -209,6 +235,7 @@
                     <div class="carousel-inner">
                         <div class="carousel-item active">
                             <div class="row">
+
                                 <!-- Card IA -->
                                 <div class="col-md-6">
                                     <a href="projeot-landingpage-IA/index.html" class="btn">
@@ -224,11 +251,13 @@
                                         </div>
                                     </a>
                                 </div>
+
                             </div>
                         </div>
 
                         <div class="carousel-item">
                             <div class="row">
+
                                 <!-- Card Travel -->
                                 <div class="col-md-6">
                                     <a href="projeto-landingpage-travel/index.html" class="btn">
@@ -245,10 +274,12 @@
                                         </div>
                                     </a>
                                 </div>
+
                             </div>
                         </div>
                         <div class="carousel-item">
                             <div class="row">
+
                                 <!-- Card NFT -->
                                 <div class="col-md-6">
                                     <a href="projeot-landingpage-nft/index.html" class="btn">
@@ -264,6 +295,7 @@
                                         </div>
                                     </a>
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -283,9 +315,11 @@
 
             <div id="carousel-boot" class="carousel slide d-none d-md-block" data-ride="carousel">
                 <div class="carousel-inner">
+
                     <!-- Carousel Item 1 -->
                     <div class="carousel-item active">
                         <div class="row">
+
                             <!-- Card IA -->
                             <div class="col-md-6">
                                 <a href="projeto-finans/index.html" class="btn">
@@ -317,6 +351,7 @@
                                     </div>
                                 </a>
                             </div>
+
                         </div>
                     </div>
 
@@ -331,9 +366,11 @@
             </div>
             <div id="carousel-boot1" class="carousel slide d-sm-block d-md-none" data-ride="carousel">
                 <div class="carousel-inner">
+
                     <!-- Carousel Item 1 -->
                     <div class="carousel-item active">
                         <div class="row">
+
                             <!-- Card IA -->
                             <div class="col-md-6">
                                 <a href="projeto-finans/index.html" class="btn">
@@ -349,10 +386,12 @@
                                     </div>
                                 </a>
                             </div>
+
                         </div>
                     </div>
                     <div class="carousel-item">
                         <div class="row">
+
                             <!-- Card NFT -->
                             <div class="col-md-6">
                                 <a href="projeto-spotify/index.html" class="btn">
@@ -368,6 +407,7 @@
                                     </div>
                                 </a>
                             </div>
+
                         </div>
                     </div>
 
@@ -386,8 +426,10 @@
                 <h3 class="mb-5" data-lang-str="using_js">Using JavaScript</h3>
                 <div id="carousel-js1" class="carousel slide d-none d-md-block" data-ride="carousel">
                     <div class="carousel-inner">
+
                         <!-- Carousel Item 1 -->
                         <div class="carousel-item active">
+
                             <div class="row">
                                 <!-- Card gestão -->
                                 <div class="col-md-6">
@@ -406,6 +448,7 @@
                                         </div>
                                     </a>
                                 </div>
+
                                 <!-- Card Fly Swatting Game -->
                                 <div class="col-md-6">
                                     <a href="projeto-mata-mosquito/index.html" class="btn">
@@ -433,6 +476,7 @@
                         <!-- Carousel Item 3 -->
                         <div class="carousel-item">
                             <div class="row">
+
                                 <!-- Card calculadora -->
                                 <div class="col-md-6">
                                     <a href="projeto-calculadora/index.html" class="btn">
@@ -449,6 +493,7 @@
                                         </div>
                                     </a>
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -463,9 +508,11 @@
                 </div>
                 <div id="carousel-js" class="carousel slide d-sm-block d-md-none" data-ride="carousel">
                     <div class="carousel-inner">
+
                         <!-- Carousel Item 1 -->
                         <div class="carousel-item active">
                             <div class="row">
+
                                 <!-- Card gestão -->
                                 <div class="col-md-6">
                                     <a href="GestaoContas-main/home.html" class="btn">
@@ -483,11 +530,14 @@
                                         </div>
                                     </a>
                                 </div>
+
                             </div>
                         </div>
+
                         <!-- Carousel Item 2 -->
                         <div class="carousel-item">
                             <div class="row">
+
                                 <!-- Card Fly Swatting Game -->
                                 <div class="col-md-6">
                                     <a href="projeto-mata-mosquito/index.html" class="btn">
@@ -505,12 +555,14 @@
                                         </div>
                                     </a>
                                 </div>
+
                             </div>
                         </div>
 
                         <!-- Carousel Item 3 -->
                         <div class="carousel-item">
                             <div class="row">
+
                                 <!-- Card Calculadora -->
                                 <div class="col-md-6">
                                     <a href="projeto-calculadora/index.html" class="btn">
@@ -527,6 +579,7 @@
                                         </div>
                                     </a>
                                 </div>
+
                             </div>
                         </div>
 
@@ -548,6 +601,7 @@
 
     </section>
 
+    <!-- Seção colaboração -->
     <section id="collaborating" class="pt-5 pb-5 bg-white">
         <div class="container text-center">
             <h2 data-lang-str="collaborating_title">Interested in collaborating with me?</h2>
@@ -559,15 +613,18 @@
         </div>
     </section>
 
+    <!-- Footer -->
     <footer class="bg-dark pt-4 pb-4">
         <div class="container">
             <div class="row">
                 <div class="col-md-12 d-flex flex-column text-center">
+
                     <span class="bg-mint-green border-radius-icon align-self-center">
                         <a href="">
                             <i class="fa-solid fa-gamepad fa-xl text-light"></i>
                         </a>
                     </span>
+
                     <h3 class="text-light" data-lang-str="footer_text">Living, learning, & leveling up <br> one day at a
                         time.</h3>
 
