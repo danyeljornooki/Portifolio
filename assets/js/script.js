@@ -134,5 +134,5 @@ document.querySelector('.translate-buttom').addEventListener('click', function (
 });
 
 function alertFora() {
-    alert('Esta página fora do ar')
+    alert('Esta página está fora do ar')
 }
