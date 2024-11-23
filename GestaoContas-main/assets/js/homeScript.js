@@ -135,9 +135,6 @@ document.addEventListener("DOMContentLoaded", function () {
     return new Date().getFullYear();
   }
 
-  console.log(getAnoAtual());
-
-
   function getNomeMes(mes) {
     const nomeMes = mesesNumericos[mes.toLowerCase()];
     if (nomeMes) {
@@ -199,7 +196,6 @@ document.addEventListener("DOMContentLoaded", function () {
   function mostrarDetalhesMes(dadosMes, selecionado = "") {
     const nomeMesSelecionado =
       dadosMes.length > 0 ? getNomeMes(dadosMes[0].nome) : "";
-    console.log(dadosMes[0].vencimento);
     if (selecionado === "contas") {
       const tabela = `
             <h3>Contas do Mês de ${nomeMesSelecionado}</h3>
@@ -524,7 +520,6 @@ document.addEventListener("DOMContentLoaded", function () {
     // Se a div de edição já estiver presente, remove-a
 
     if (divEdicaoExistente) {
-      console.log(divEdicaoExistente);
 
       divEdicaoExistente.remove();
       return; // Retorna para evitar a criação de uma nova div de edição
@@ -681,94 +676,64 @@ document.addEventListener("DOMContentLoaded", function () {
       const vencimento = new Date(document.getElementById("vencimento").value);
       const desconto = parseFloat(document.getElementById("desconto").value);
       const preco = parseFloat(document.getElementById("preco").value);
+
       const mesAtual = getMesAtual();
       const anoAtual = getAnoAtual();
 
       let contasAtualizadas = [...todasContas];
+
 
       if (vencimento.getFullYear() > anoAtual) {
 
         let dataTemp = new Date(vencimento);
 
         if (mesAtual <= 12) {
-          while (dataTemp.getMonth() + 1 > 12) {
-            console.log(i);
+
+          let i = 0
+          while (dataTemp.getMonth() + 1 < 12) {
+            i++
 
             const id = generateUUID();
 
-            if (dataTemp.getMonth() === vencimento.getMonth()) {
+            if (dataTemp.getMonth() === vencimento.getMonth() + 1) {
               break;
             } else {
-              console.log(dataTemp);
-              
               dataTemp.setMonth(dataTemp.getMonth() - 1);
-              // adicionarContaAoArray(
-              //   id,
-              //   contasAtualizadas,
-              //   tipoConta,
-              //   dataTemp,
-              //   desconto,
-              //   preco
-              // );
+
+              adicionarContaAoArray(
+                id,
+                contasAtualizadas,
+                tipoConta,
+                dataTemp,
+                desconto,
+                preco
+              );
             }
-
-          }
-        } else {
-          while (dataTemp.getMonth() + 1 > 12) {
-
-            console.log('aqui');
-            
-            const id = generateUUID();
-
-            if (dataTemp.getMonth() === vencimento.getMonth()) {
-              break;
-            } else {
-              console.log(dataTemp);
-
-              dataTemp.setMonth(dataTemp.getMonth() - 1);
-              // adicionarContaAoArray(
-              //   id,
-              //   contasAtualizadas,
-              //   tipoConta,
-              //   dataTemp,
-              //   desconto,
-              //   preco
-              // );
-            }
-
           }
         }
 
-      }
-      if (vencimento.getMonth() + 1 > mesAtual) {
-        let dataTemp = new Date(vencimento);
-
-        while (dataTemp.getMonth() + 1 > mesAtual) {
-          console.log(vencimento.getMonth() + 1 > mesAtual);
+        while (dataTemp.getMonth() + 1 > 12) {
 
           const id = generateUUID();
-          console.log(contasAtualizadas);
 
-          if (dataTemp.getMonth() === mesAtual) {
+          if (dataTemp.getMonth() === vencimento.getMonth()) {
             break;
           } else {
-            console.log(dataTemp);
-
             dataTemp.setMonth(dataTemp.getMonth() - 1);
-            // adicionarContaAoArray(
-            //   id,
-            //   contasAtualizadas,
-            //   tipoConta,
-            //   dataTemp,
-            //   desconto,
-            //   preco
-            // );
+            adicionarContaAoArray(
+              id,
+              contasAtualizadas,
+              tipoConta,
+              dataTemp,
+              desconto,
+              preco
+            );
           }
+
         }
 
+
       }
-
-
 
       // Adiciona a nova conta ao array de contas
       const id = generateUUID();

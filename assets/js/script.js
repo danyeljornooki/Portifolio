@@ -45,7 +45,7 @@ let translation = {
         'fly_game': 'Fly Swatting Game',
         'fly_game_js': 'Fly swatting game built with JavaScript',
         'account_manager': 'account manager',
-        'account_manager_layout': 'Website to manage incoming and outgoing expenses',
+        'account_manager_layout': 'Website to manage',
         'collaborating_title': 'Interested in collaborating with me?',
         'collaborating_subtitle': 'I’m always open to discussing product design work or partnership opportunities.',
         'footer_text': 'Living, learning, & leveling up <br> one day at a time.'
@@ -93,7 +93,7 @@ let translation = {
         'fly_game': 'Jogo de matar moscas',
         'fly_game_js': 'Jogo de matar moscas feito com JavaScript',
         'account_manager': 'Gerenciador de Contas',
-        'account_manager_layout': 'Site para gerenciar despesas de entrada e saída',
+        'account_manager_layout': 'Site para gerenciar despesas',
         'collaborating_title': 'Interessado em colaborar comigo?',
         'collaborating_subtitle': 'Estou sempre aberto para discutir trabalho de design de produtos ou oportunidades de parceria.',
         'footer_text': 'Vivendo, aprendendo e subindo de nível, <br> um dia de cada vez.'
