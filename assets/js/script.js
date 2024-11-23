@@ -132,3 +132,7 @@ document.querySelector('.translate-buttom').addEventListener('click', function (
 
     changeLanguage(newLang);
 });
+
+function alertFora() {
+    alert('Esta página fora do ar')
+}
