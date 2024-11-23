@@ -48,7 +48,7 @@
         </nav> <!-- fim nav-->
     </header> <!-- Fim Header -->
 
-    <span name="translate-buttom" data-lang="en" class="translate-buttom fixed-bottom rounded-circle mb-2">PT</span>
+    <span name="translate-buttom" data-lang="en" class="translate-buttom fixed-bottom rounded-circle mb-4">PT</span>
 
     <section id="home" class="d-flex p-5 mt-md-5"> <!-- Seção -->
         <div class="container align-self-center bg-gray"> <!-- Container-->
@@ -127,6 +127,8 @@
         </div>
     </section>
 
+    <!-- d-none d-md-block -->
+
     <section id="projects" class="pt-2 pb-5 border-bottom bg-white">
         <div class="container text-center">
             <div class="row">
@@ -137,12 +139,12 @@
             <div class="mb-5">
                 <h3 class="mb-5" data-lang-str="only_html_css">Only Html And CSS</h3>
 
-                <div id="carousel-html" class="carousel slide" data-ride:="carousel">
-                    <div class="carousel-inner">
+                <div id="carousel-html" class="carousel slide d-none d-md-block" data-ride:="carousel">
+                    <div class="carousel-inner ">
                         <div class="carousel-item active">
                             <div class="row">
                                 <!-- Card IA -->
-                                <div class="col-md-6">
+                                <div class="col">
                                     <a href="projeot-landingpage-IA/index.html" class="btn">
                                         <div class="card border-0 rounded-lg">
                                             <img src="./assets/img/ia.jfif" class="card-img-top rounded-lg"
@@ -158,7 +160,7 @@
                                 </div>
 
                                 <!-- Card NFT -->
-                                <div class="col-md-6">
+                                <div class="col">
                                     <a href="projeot-landingpage-nft/index.html" class="btn">
                                         <div class="card border-0 rounded-lg">
                                             <img src="./assets/img/nft.jfif" class="card-img-top rounded-lg"
@@ -197,8 +199,6 @@
                         </div>
                     </div>
 
-
-
                     <a href="#carousel-html" class="carousel-control-prev" data-slide="prev">
                         <i class="fas fa-angle-left fa-3x control-carousel"></i>
                     </a>
@@ -207,7 +207,75 @@
                     </a>
 
                 </div>
+                <div id="carousel-html1" class="carousel slide d-none d-sm-block d-md-none" data-ride:="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="row">
+                                <!-- Card IA -->
+                                <div class="col-md-6">
+                                    <a href="projeot-landingpage-IA/index.html" class="btn">
+                                        <div class="card border-0 rounded-lg">
+                                            <img src="./assets/img/ia.jfif" class="card-img-top rounded-lg"
+                                                alt="IA Image">
+                                            <div class="card-body text-center border-top">
+                                                <h4 class="card-title text-dark" data-lang-str="ia_project">IA</h4>
+                                                <p class="card-text text-muted" data-lang-str="website_layout_ai">
+                                                    Website
+                                                    layout for an AI</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
 
+                        <div class="carousel-item">
+                            <div class="row">
+                                <!-- Card Travel -->
+                                <div class="col-md-6">
+                                    <a href="projeto-landingpage-travel/index.html" class="btn">
+                                        <div class="card border-0 rounded-lg">
+                                            <img src="./assets/img/travel.jfif" class="card-img-top rounded-lg"
+                                                alt="Travel Image">
+                                            <div class="card-body text-center">
+                                                <h4 class="card-title text-dark" data-lang-str="travel_project">Travel
+                                                </h4>
+                                                <p class="card-text text-muted" data-lang-str="travel_agency_website">
+                                                    Travel
+                                                    agency website</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="row">
+                                <!-- Card NFT -->
+                                <div class="col-md-6">
+                                    <a href="projeot-landingpage-nft/index.html" class="btn">
+                                        <div class="card border-0 rounded-lg">
+                                            <img src="./assets/img/nft.jfif" class="card-img-top rounded-lg"
+                                                alt="NFT Image">
+                                            <div class="card-body text-center">
+                                                <h4 class="card-title text-dark" data-lang-str="nft_project">NFT</h4>
+                                                <p class="card-text text-muted" data-lang-str="nft_game_website">NFT
+                                                    game
+                                                    website.</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#carousel-html1" class="carousel-control-prev" data-slide="prev">
+                        <i class="fas fa-angle-left fa-3x control-carousel"></i>
+                    </a>
+                    <a href="#carousel-html1" class="carousel-control-next" data-slide="next">
+                        <i class="fas fa-angle-right fa-3x control-carousel"></i>
+                    </a>
+                </div>
             </div>
 
         </div>
@@ -215,7 +283,7 @@
         <div class="container text-center">
             <h3 class="mb-5" data-lang-str="using_bootstrap">Using Bootstrap</h3>
 
-            <div id="carousel-boot" class="carousel slide" data-ride="carousel">
+            <div id="carousel-boot" class="carousel slide d-none d-md-block" data-ride="carousel">
                 <div class="carousel-inner">
                     <!-- Carousel Item 1 -->
                     <div class="carousel-item active">
@@ -231,7 +299,6 @@
                                             <p class="card-text text-muted" data-lang-str="finance_service_layout">
                                                 Website
                                                 layout for finance service</p>
-
                                         </div>
                                     </div>
                                 </a>
@@ -264,12 +331,63 @@
                     </a>
                 </div>
             </div>
+            <div id="carousel-boot1" class="carousel slide d-none d-sm-block d-md-none" data-ride="carousel">
+                <div class="carousel-inner">
+                    <!-- Carousel Item 1 -->
+                    <div class="carousel-item active">
+                        <div class="row">
+                            <!-- Card IA -->
+                            <div class="col-md-6">
+                                <a href="projeto-finans/index.html" class="btn">
+                                    <div class="card border-0 rounded-lg">
+                                        <img src="./assets/img/finans.jfif" class="card-img-top rounded-lg"
+                                            alt="Finance Image">
+                                        <div class="card-body text-center">
+                                            <h4 class="card-title text-dark" data-lang-str="finance_service">FInans</h4>
+                                            <p class="card-text text-muted" data-lang-str="finance_service_layout">
+                                                Website
+                                                layout for finance service</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="row">
+                            <!-- Card NFT -->
+                            <div class="col-md-6">
+                                <a href="projeto-spotify/index.html" class="btn">
+                                    <div class="card border-0 rounded-lg">
+                                        <img src="./assets/img/spotify.jfif" class="card-img-top rounded-lg"
+                                            alt="Spotify Image">
+                                        <div class="card-body text-center">
+                                            <h4 class="card-title text-dark" data-lang-str="spotify_clone">Spotify</h4>
+                                            <p class="card-text text-muted" data-lang-str="spotify_clone_layout">Spotify
+                                                clone website(2017)</p>
+
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Carousel Controls -->
+                    <a href="#carousel-boot1" class="carousel-control-prev" data-slide="prev">
+                        <i class="fas fa-angle-left fa-3x control-carousel"></i>
+                    </a>
+                    <a href="#carousel-boot1" class="carousel-control-next" data-slide="next">
+                        <i class="fas fa-angle-right fa-3x control-carousel"></i>
+                    </a>
+                </div>
+            </div>
 
             <!-- Using JavaScript Section -->
             <div class="container text-center mt-5">
                 <h3 class="mb-5" data-lang-str="using_js">Using JavaScript</h3>
 
-                <div id="carousel-js" class="carousel slide" data-ride="carousel">
+                <div id="carousel-js" class="carousel slide d-none d-md-block" data-ride="carousel">
                     <div class="carousel-inner">
                         <!-- Carousel Item 1 -->
                         <div class="carousel-item active">
@@ -290,8 +408,11 @@
                                         </div>
                                     </a>
                                 </div>
-
-
+                            </div>
+                        </div>
+                        <!-- Carousel Item 2 -->
+                        <div class="carousel-item">
+                            <div class="row">
                                 <!-- Card Fly Swatting Game -->
                                 <div class="col-md-6">
                                     <a href="projeto-mata-mosquito/index.html" class="btn">
@@ -311,10 +432,89 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Carousel Item 3 -->
+                        <div class="carousel-item">
+                            <div class="row">
+                                <!-- Card Calculadora -->
+                                <div class="col-md-6">
+                                    <a href="projeto-calculadora/index.html" class="btn">
+                                        <div class="card border-0 rounded-lg">
+                                            <img src="./assets/img/calculator.jfif" class="card-img-top rounded-lg"
+                                                alt="Calculator Image">
+                                            <div class="card-body text-center">
+                                                <h4 class="card-title text-dark" data-lang-str="calculator">Calculator
+                                                </h4>
+                                                <p class="card-text text-muted" data-lang-str="calculator_js">Calculator
+                                                    using
+                                                    JavaScript</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <!-- Carousel Controls -->
+                    <a href="#carousel-js" class="carousel-control-prev" data-slide="prev">
+                        <i class="fas fa-angle-left fa-3x control-carousel"></i>
+                    </a>
+                    <a href="#carousel-js" class="carousel-control-next" data-slide="next">
+                        <i class="fas fa-angle-right fa-3x control-carousel"></i>
+                    </a>
+                </div>
+                <div id="carousel-js1" class="carousel slide d-none d-sm-block d-md-none" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <!-- Carousel Item 1 -->
+                        <div class="carousel-item active">
+                            <div class="row">
+                                <!-- Card Calculator -->
+                                <div class="col-md-6">
+                                    <a href="GestaoContas-main/home.html" class="btn">
+                                        <div class="card border-0 rounded-lg">
+                                            <img src="./assets/img/gestão-custos.jpg" class="card-img-top rounded-lg"
+                                                alt="Finance Image">
+                                            <div class="card-body text-center">
+                                                <h4 class="card-title text-dark" data-lang-str="account_manager">account
+                                                    manager</h4>
+                                                <p class="card-text text-muted" data-lang-str="account_manager_layout">
+                                                    Website
+                                                    to manage incoming and outgoing expenses</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                         <!-- Carousel Item 2 -->
                         <div class="carousel-item">
                             <div class="row">
-                                <!-- Card IA -->
+                                <!-- Card Fly Swatting Game -->
+                                <div class="col-md-6">
+                                    <a href="projeto-mata-mosquito/index.html" class="btn">
+                                        <div class="card border-0 rounded-lg">
+                                            <img src="./assets/img/mata-mosca.jpg" class="card-img-top rounded-lg"
+                                                alt="Fly Game Image">
+                                            <div class="card-body text-center">
+                                                <h4 class="card-title text-dark" data-lang-str="fly_game">Fly Swatting
+                                                    Game
+                                                </h4>
+                                                <p class="card-text text-muted" data-lang-str="fly_game_js">Fly swatting
+                                                    game
+                                                    built with JavaScript</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Carousel Item 3 -->
+                        <div class="carousel-item">
+                            <div class="row">
+                                <!-- Card calculadora -->
                                 <div class="col-md-6">
                                     <a href="projeto-calculadora/index.html" class="btn">
                                         <div class="card border-0 rounded-lg">
@@ -335,10 +535,10 @@
                     </div>
 
                     <!-- Carousel Controls -->
-                    <a href="#carousel-js" class="carousel-control-prev" data-slide="prev">
+                    <a href="#carousel-js1" class="carousel-control-prev" data-slide="prev">
                         <i class="fas fa-angle-left fa-3x control-carousel"></i>
                     </a>
-                    <a href="#carousel-js" class="carousel-control-next" data-slide="next">
+                    <a href="#carousel-js1" class="carousel-control-next" data-slide="next">
                         <i class="fas fa-angle-right fa-3x control-carousel"></i>
                     </a>
                 </div>
