@@ -1,0 +1,499 @@
+/* Reset básico */
+body,
+h1,
+h2,
+h3,
+ul,
+li,
+p,
+form {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+img {
+    width: 100%;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 1px;
+    color: #333;
+
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #222222;
+    padding-inline: 5rem;
+    color: white;
+    box-shadow: 0px 1px 5px #000000;
+}
+
+.close-btn {
+    display: none;
+    width: 100%;
+    margin-bottom: 4rem;
+    cursor: pointer;
+}
+
+.close-btn img {
+    width: 2rem;
+    float: right;
+}
+
+.logo {
+    width: 2rem;
+}
+
+.nav-header {
+    color: white;
+}
+
+.menu-dashboard {
+    list-style-type: none;
+    padding: 0.5rem 0;
+}
+
+.menu-dashboard li {
+    display: inline;
+}
+
+.dashboard-btn {
+    padding: 0.8rem 1rem;
+    font-size: inherit;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 300ms ease-in-out;
+}
+
+.dashboard-btn:hover {
+    color: #a1a1a1b6;
+}
+
+
+.logoff {
+    display: flex;
+    align-items: center;
+    width: 2rem;
+}
+
+.selecionado-das {
+    color: #969696b6;
+    font-weight: bolder;
+}
+
+.burguer {
+    display: none;
+    transform: rotate(-90deg);
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+@media(width < 700px) {
+    .header {
+        height: 50px;
+    }
+
+    .nav-header {
+        display: none;
+        margin-block: 4rem;
+    }
+
+    .menu-dashboard {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .logoff {
+        display: none;
+    }
+
+    .burguer{
+        display: block;
+    }
+
+}
+
+/* Botões dos Meses */
+#opcoesMes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1rem;
+}
+
+.mes-btn {
+    border: none;
+    font-size: inherit;
+    color: inherit;
+    background: none;
+    cursor: pointer;
+    padding: 15px 15px;
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    outline: none;
+    position: relative;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+.mes-btn:after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+/* Pseudo elements for icons */
+.mes-btn:before {
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    position: relative;
+    -webkit-font-smoothing: antialiased;
+}
+
+.cnt-btn {
+    background: #344ead;
+    color: #fff;
+}
+
+.cnt-btn:hover {
+    background: #697dc5;
+}
+
+.cnt-btn:active {
+    background: #152250;
+    top: 2px;
+}
+
+.selecionado {
+    font-size: 15px;
+    background: #152250;
+    font-weight: bold;
+}
+
+.cnt-btn:before {
+    position: absolute;
+    height: 100%;
+    left: 0;
+    top: 0;
+    line-height: 3;
+    font-size: 140%;
+    width: 60px;
+}
+
+/* Conteúdo da Dashboard */
+#dashboardContent {
+    display: flex;
+    padding-inline: 2rem;
+    flex-direction: column;
+    max-width: 1080px;
+    margin: auto;
+    margin-block: 5rem;
+    background-color: #fff;
+    border-radius: 8px;
+}
+
+/* Detalhes do Mês */
+#monthDetails {
+    max-width: 1080px;
+    margin: auto;
+    margin-top: 2rem;
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 8px;
+    text-align-last: center;
+}
+
+#monthDetails h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-transform: capitalize;
+}
+
+
+#month {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+}
+
+
+/* Formulário */
+form {
+    margin-top: 1.5rem;
+}
+
+form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+form input[type="text"],
+form input[type="date"],
+form input[type="number"] {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+form button {
+    padding: 0.8rem 1.5rem;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+form button:hover {
+    background-color: #007bffc2;
+}
+
+#cancelarEdicaoBtn {
+    background-color: #bd3c09;
+}
+
+#cancelarEdicaoBtn:hover {
+    background-color: #bd3c09b2;
+}
+
+/* Tabela */
+
+.responsive-table {
+    overflow: hidden;
+    overflow-x: auto;
+}
+
+table {
+    min-width: 36rem;
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1.5rem;
+    border: 1px solid #0000009f;
+}
+
+table th,
+table td {
+    white-space: nowrap;
+    padding: 0.8rem;
+    border-top: 1px solid #0000009f;
+    border-block-end: 1px solid #0000009f;
+    text-align: left;
+}
+
+table th {
+    background-color: #454545;
+    color: #fff;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+
+@media (max-width: 768px) {
+
+    .mes-btn {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    
+
+    #dashboardContent,
+    #monthDetails {
+        padding: 1rem;
+    }
+
+    form {
+        margin-top: 1rem;
+    }
+
+}
+
+
+.checkbox-mes {
+    display: none;
+}
+
+.checkbox-mes+label {
+    display: block;
+    position: relative;
+    padding-left: 30px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.checkbox-mes+label::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    border: 2px solid #007bff;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.checkbox-mes:checked+label::before {
+    background-color: #007bff;
+}
+
+.checkbox-mes+label::after {
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 6px;
+    height: 12px;
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    transform-origin: bottom left;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.checkbox-mes:checked+label::after {
+    display: block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.conta-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    padding: 10px;
+    background-color: #f5f5f5;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.checkbox-conta {
+    margin-right: 10px;
+}
+
+.conta-info {
+    flex-grow: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.conta-info strong {
+    font-weight: bold;
+    color: #333;
+}
+
+.conta-info .vencimento {
+    font-size: 0.9em;
+    color: #666;
+}
+
+.conta-item:hover {
+    background-color: #e9e9e9;
+}
+
+#excluirBtn {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 20px;
+    background-color: #c41f14a4;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    text-decoration: none;
+    text-align: center;
+    outline: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#excluirBtn:hover {
+    background-color: #b71c1c;
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#excluirBtn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+#excAll {
+    float: inline-end;
+    padding: 10px 20px;
+    margin-top: 20px;
+    background-color: #b71c1c;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    text-decoration: none;
+    text-align: center;
+    outline: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#excAll:hover {
+    background-color: #99170e;
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.editar-btn {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition-duration: 0.4s;
+}
+
+.editar-btn:hover {
+    background-color: #45a049;
+}
+
+.tabelasTodos {
+    background-color: #f1f1f1d2;
+    padding: 15px;
+    box-shadow: 3px 4px 10px #0000004d;
+}

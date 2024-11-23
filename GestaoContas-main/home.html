@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="./assets/css/homestyle.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+
+<body>
+
+    <header id="header" class="header">
+        <div id="close-menu" class="close-btn"><img src="./assets/img/excluir.png" alt=""></div>
+        <div id="logo" class="logo"><a href="../index.html"><img src="./assets/img/painel-de-controle.png" alt="control panel"></a></div>
+        <nav id="nav-header" class="nav-header">
+            <ul id="menu-dashboard" class="menu-dashboard ">
+                <li><button class="dashboard-btn" data-option="contas">Contas</button></li>
+                <li><button class="dashboard-btn" data-option="adicionar">Adicionar</button></li>
+                <li><button class="dashboard-btn" data-option="excluir">Excluir</button></li>
+                <li><button class="dashboard-btn" data-option="editar">Editar</button></li>
+                <li><button class="dashboard-btn" data-option="todos">Todos</button></li>
+            </ul>
+        </nav>
+        <div id="logoff" class="logoff"><a href="../index.html"><img src="./assets/img/sair.png" alt=""></a></div>
+        <div id="burguer" class="burguer">|||</div>
+    </header>
+
+    <div id="dashboardContent">
+    </div>
+
+
+    <div id="monthDetails">
+        <h3 id="mesSelecionado"></h3>
+    </div>
+
+    <script src="./assets/js/homeScript.js"></script>
+
+</body>
+
+</html>
