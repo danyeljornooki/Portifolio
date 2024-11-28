@@ -200,9 +200,7 @@ a {
 }
 
 #excAll {
-    float: inline-end;
-    padding: 10px 20px;
-    margin-top: 20px;
+    padding: 5px 14px;
     background-color: #b71c1c;
     color: #fff;
     font-size: 16px;

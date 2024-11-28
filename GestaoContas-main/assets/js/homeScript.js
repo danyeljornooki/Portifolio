@@ -74,18 +74,26 @@ class Bd {
 
   gravar(d) {
     const dataAtual = this.dataAtual()
-
     
+    console.log(d);
+    
+
     if (d.vencimento > dataAtual) {
+
       const vencimento = new Date(d.vencimento)
+      let vencimentoLogica = new Date(d.vencimento)
+      vencimentoLogica = vencimentoLogica.setMonth(vencimentoLogica.getMonth() + 1)
 
+      
       const dataAtual = this.dataAtual()
-      let dataIteracao = new Date(dataAtual);
+      let dataIteracao = new Date(dataAtual)
 
-      while (dataIteracao <= vencimento) {
+      
+      while (vencimentoLogica >= dataIteracao ) {
+
         let id = this.getProximoId()
         let ano = dataIteracao.getFullYear();
-        let mes = (dataIteracao.getMonth() + 1).toString().padStart(2, '0');
+        let mes = (dataIteracao.getMonth() + 1).toString().padStart(2, '0')
 
         const partesData = this.splitMes(false, d.vencimento)
 
@@ -94,7 +102,7 @@ class Bd {
         localStorage.setItem(id, JSON.stringify(d))
         localStorage.setItem('id', id)
 
-        dataIteracao.setMonth(dataIteracao.getMonth() + 1);
+        dataIteracao.setMonth(dataIteracao.getMonth() + 1)
       }
 
     } else {
@@ -211,11 +219,13 @@ function cadastrarConta() {
     $('#modalRegistraDespesa').modal('show')
     limparRegistros(descricao, tipoConta, tipoVencimento, vencimento, preco, desconto)
   } else {
-    console.log('aqui');
-
     $('#modalRegistraDespesa').modal('show')
   }
 
+}
+
+function atualizar(){
+  window.location.reload()
 }
 
 class MontarDados {
@@ -263,6 +273,9 @@ class MontarDados {
                       `).join("")}
                   </tbody>
               </table>
+              <div class="row justify-content-end">
+                <span class="btn btn-primary" onclick="atualizar()"><i class="fa-solid fa-arrows-rotate"></i></span>
+              </div>
           `;
       detalhesMes.innerHTML = tabela;
     } else if (x === 'adicionar') {
@@ -341,7 +354,16 @@ class MontarDados {
       </table>
       </div>
       <button id="excluirBtn" disabled>Excluir Selecionados</button>
-      <div><button id="excAll">Excluir Todos</button></div>
+      <div class="container text-md-right">
+        <div class="row justify-content-end">
+          <div class="col-md-1">
+            <span class="btn btn-primary" onclick="atualizar()"><i class="fa-solid fa-arrows-rotate"></i></span>
+          </div>
+          <div class="col-md-2">
+            <button id="excAll">Excluir Todos</button>
+          </div>
+        </div>
+      </div>
   `;
 
       detalhesMes.innerHTML = tabela;
@@ -380,14 +402,12 @@ class MontarDados {
           if (confirm(`Tem certeza que deseja excluir ${contasSelecionadas.length === 1 ? "esta conta" : "estas contas"}?`)) {
             contasSelecionadas.forEach(element => {
               bd.remover(element);
-              window.location.reload()
             });
           }
         });
       document.getElementById("excAll").addEventListener("click", function () {
         if (confirm(`Dejesa excluir todos os dados?`)) {
           localStorage.clear();
-          window.location.reload()
         }
       });
     } else if (x === 'editar') {
@@ -416,6 +436,9 @@ class MontarDados {
               `).join("")}
           </tbody>
       </table>
+      <div class="row justify-content-end">
+        <span class="btn btn-primary" onclick="atualizar()"><i class="fa-solid fa-arrows-rotate"></i></span>
+      </div>
   `;
       detalhesMes.innerHTML = tabela;
 
@@ -522,7 +545,6 @@ function mostrarDivEdicao(conta) {
 
     bd.remover(conta.id)
     bd.gravar(contaEdit)
-    window.location.reload()
   });
 
   cancelarEdicaoBtn.addEventListener("click", function () {
