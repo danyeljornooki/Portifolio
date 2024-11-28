@@ -1,0 +1,48 @@
+
+const mesAtual = getMesAtual();
+const anoAtual = getAnoAtual();
+
+function getMesAtual() {
+  return new Date().getMonth() + 1;
+}
+function getAnoAtual() {
+  return new Date().getFullYear();
+}
+
+
+//carrega conteudo da opção selecionada 
+function carregarConteudoDashboard(opcaoSelecionada) {
+
+
+    switch (opcaoSelecionada) {
+      case "contas":
+        bd.recuperarTodosRegistros().length === 0
+          ? (conteudoDashboard.innerHTML = `<h3>Contas</h3><p>Não há contas cadastradas.</p>`)
+          : carregarDados.montarContas(opcaoSelecionada)
+        break;
+      case "adicionar":
+        carregarDados.montarContas(opcaoSelecionada)
+        break;
+      case "excluir":
+        bd.recuperarTodosRegistros().length === 0
+          ? (conteudoDashboard.innerHTML = `<h3>Contas</h3><p>Sem itens a excluir.</p>`)
+          : carregarDados.montarContas(opcaoSelecionada)
+        break;
+      case "editar":
+  
+        bd.recuperarTodosRegistros().length === 0
+          ? (conteudoDashboard.innerHTML = `<h3>Contas</h3><p>Não há contas para editar.</p>`)
+          : carregarContas(opcaoSelecionada);
+        break;
+      case "todos":
+        bd.recuperarTodosRegistros().length === 0
+          ? (conteudoDashboard.innerHTML = `<h3>Contas</h3><p>Sem dados cadastrados.</p>`)
+          : carregarContas(opcaoSelecionada);
+        break;
+      default:
+        conteudoDashboard.innerHTML = `<h3>Selecionado</h3><p>Conteúdo do item selecionado.</p>`;
+        break;
+  
+    }
+  }
+  

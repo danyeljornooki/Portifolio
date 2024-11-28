@@ -5,40 +5,88 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
+    <!-- Bootstrap início -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Bootstrap fim -->
+    <script src="https://kit.fontawesome.com/56cccbbade.js" crossorigin="anonymous"></script>
+
     <link rel="stylesheet" href="./assets/css/homestyle.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
 
 </head>
 
 <body>
+    <div class="row">
+        <nav id="menu" class="bg-primary col-3 col-xl-2 pb-3">
+            <div class="row justify-content-between p-4">
+                <div class="col-1">
+                    <a href=""><i class="fa-solid fa-city text-light fa-xl"></i></a>
+                </div>
+                <div class="col-md-1 mr-4">
+                    <a href="../index.html">
+                        <i class="fa-solid fa-right-from-bracket text-light fa-xl m-3"></i>
+                    </a>
+                </div>
 
-    <header id="header" class="header">
-        <div id="close-menu" class="close-btn"><img src="./assets/img/excluir.png" alt=""></div>
-        <div id="logo" class="logo"><a href="../index.html#projects"><img src="./assets/img/painel-de-controle.png" alt="control panel"></a></div>
-        <nav id="nav-header" class="nav-header">
-            <ul id="menu-dashboard" class="menu-dashboard ">
-                <li><button class="dashboard-btn" data-option="contas">Contas</button></li>
-                <li><button class="dashboard-btn" data-option="adicionar">Adicionar</button></li>
-                <li><button class="dashboard-btn" data-option="excluir">Excluir</button></li>
-                <li><button class="dashboard-btn" data-option="editar">Editar</button></li>
-                <li><button class="dashboard-btn" data-option="todos">Todos</button></li>
+            </div>
+            <ul id="menu-dashboard" class="nav flex-column">
+                <li class="nav-item">
+                    <a class="dashboard-link nav-link text-light mt-2" data-option="contas">Contas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="dashboard-link nav-link text-light mt-2" data-option="adicionar">Adicionar</a>
+                </li>
+                <li class="nav-item">
+                    <a class="dashboard-link nav-link text-light mt-2" data-option="excluir">Excluir</a>
+                </li>
+                <li class="nav-item">
+                    <a class="dashboard-link nav-link text-light mt-2" data-option="editar">Editar</a>
+                </li>
             </ul>
-        </nav>
-        <div id="logoff" class="logoff"><a href="../index.html"><img src="./assets/img/sair.png" alt=""></a></div>
-        <div id="burguer" class="burguer">|||</div>
-    </header>
+    </div>
+    </nav>
+    <div class="col-md-9">
+        <div id="dashboardContent" class="container mt-5">
+        </div>
 
-    <div id="dashboardContent">
+        <div id="monthDetails">
+        </div>
+    </div>
     </div>
 
+    <!-- Modal -->
+    <div class="modal fade" id="modalRegistraDespesa" tabindex="-1" role="dialog" aria-labelledby="registraDespesaLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header ">
+                    <h5 class="modal-title" id="registraDespesaLabel"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="modalText">
 
-    <div id="monthDetails">
-        <h3 id="mesSelecionado"></h3>
+                </div>
+                <div class="modal-footer">
+                    <button id="modal-btn" type="button" class="btn" data-dismiss="modal"></button>
+                </div>
+            </div>
+        </div>
     </div>
-
     <script src="./assets/js/homeScript.js"></script>
 
 </body>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
 
 </html>

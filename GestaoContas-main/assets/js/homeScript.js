@@ -1,269 +1,333 @@
-document.addEventListener("DOMContentLoaded", function () {
-  // Seleciona elementos do DOM que serão utilizados
-  const botoesDashboard = document.querySelectorAll(".dashboard-btn");
-  const conteudoDashboard = document.getElementById("dashboardContent");
-  const detalhesMes = document.getElementById("monthDetails");
-  const closeMenu = document.getElementById("close-menu")
-  const burguer = document.getElementById("burguer")
+// Seleciona elementos do DOM que serão utilizados
+const botoesDashboard = document.querySelectorAll(".dashboard-link");
+const conteudoDashboard = document.getElementById("dashboardContent");
+const detalhesMes = document.getElementById("monthDetails");
 
-  // fechar menu
-  function closeMen(x) {
-    var windowWidth = window.innerWidth;
-    var header = document.getElementById("header")
-    var nav_header = document.getElementById("nav-header")
-    var menu_dashboard = document.getElementById("menu-dashboard")
-    if (windowWidth < 700) {
-      if (x === true) {
+class Contas {
+  constructor(descricao, tipo = 0, tipoV = 0, vencimento, preco, desconto) {
+    this.descricao = descricao
+    this.tipo = tipo
+    this.tipoVencimento = tipoV
+    this.vencimento = vencimento
+    this.preco = preco
+    this.desconto = desconto
+  }
 
-        header.style = `z-index: 1;
-                        position: absolute;
-                        width: 100%;
-                        height: 100vh;
-                        flex-direction: column;
-                        justify-content: center;
-                        top: 0; `;
-        closeMenu.style = `display: block`
-        nav_header.style = `display: block`
-        menu_dashboard.style = `flex-direction = column; display:flex;
-                    `
-      } else {
+  validarDados() {
 
-        header.style = `display: flex;
-                        justify-content: space-between;
-                        align-items: center;`
-        closeMenu.style = `display: none`
-        nav_header.style = `display: none
-                    @media(width > 700px) {
-                    .nav-header {
-                    display: none;
-                    }}
-          `
-        menu_dashboard.style = `display:block`
+    for (const i in this) {
 
+      if (this[i] == undefined || this[i] == '' || this[i] == null) {
+        this.criarmodal(false)
+        return false
       }
+    }
+    this.criarmodal(true)
+    return true
+  }
+
+  criarmodal(x) {
+    if (x) {
+
+      document.getElementById('registraDespesaLabel').innerText = 'Sucesso Gravação'
+      document.getElementById('modalText').innerText = 'Gravação foi realizada com sucesso!'
+      document.getElementsByClassName('modal-header')[0].className = 'modal-header text-success'
+      document.getElementById('modal-btn').innerText = 'Voltar'
+      document.getElementById('modal-btn').className = 'btn btn-success'
+
     } else {
-      header.style = `display: flex;
-                        justify-content: space-between;
-                        align-items: center;`
-      closeMenu.style = `display: none`
-      nav_header.style = `display: block`
-      menu_dashboard.style = `display:block 
-                    @media(width < 700px) {
-                    .menu-dashboard {
-                    display: none;
-                    }}`
-    }
 
-
-
-  }
-
-  burguer.addEventListener("click", function () {
-    closeMen(true)
-  })
-
-  closeMenu.addEventListener("click", function () {
-    closeMen(false)
-  })
-
-  const mesesNumericos = {
-    Janeiro: 1,
-    Fevereiro: 2,
-    Março: 3,
-    Abril: 4,
-    Maio: 5,
-    Junho: 6,
-    Julho: 7,
-    Agosto: 8,
-    Setembro: 9,
-    Outubro: 10,
-    Novembro: 11,
-    Dezembro: 12,
-  };
-
-  let todasContas = JSON.parse(localStorage.getItem("todasContas")) || [];
-
-  //carrega conteudo da opção selecionada 
-  function carregarConteudoDashboard(opcaoSelecionada) {
-    botoesDashboard.forEach((btn) => {
-      btn.addEventListener("click", function () {
-        botoesDashboard.forEach((btn) => {
-          btn.classList.remove("selecionado-das");
-        });
-
-        // Adiciona a classe 'selecionado-das' apenas ao botão clicado
-        this.classList.add("selecionado-das");
-      });
-    });
-    switch (opcaoSelecionada) {
-      case "contas":
-        todasContas.length === 0
-          ? (conteudoDashboard.innerHTML = `<h3>Contas</h3><p>Não há contas cadastradas.</p>`)
-          : carregarContas(opcaoSelecionada);
-        break;
-      case "adicionar":
-        carregarFormularioAdicao();
-        break;
-      case "excluir":
-
-        todasContas.length === 0
-          ? (conteudoDashboard.innerHTML = `<h3>Contas</h3><p>Sem itens a excluir.</p>`)
-          : carregarContas(opcaoSelecionada);
-        break;
-      case "editar":
-
-        todasContas.length === 0
-          ? (conteudoDashboard.innerHTML = `<h3>Contas</h3><p>Não há contas para editar.</p>`)
-          : carregarContas(opcaoSelecionada);
-        break;
-      case "todos":
-        todasContas.length === 0
-          ? (conteudoDashboard.innerHTML = `<h3>Contas</h3><p>Sem dados cadastrados.</p>`)
-          : carregarContas(opcaoSelecionada);
-        break;
-      default:
-        conteudoDashboard.innerHTML = `<h3>Selecionado</h3><p>Conteúdo do item selecionado.</p>`;
-        break;
+      document.getElementById('registraDespesaLabel').innerText = 'Erro na gravação'
+      document.getElementById('modalText').innerText = 'Existem campos obrigatorios que não foram preenchidos'
+      document.getElementsByClassName('modal-header')[0].className = 'modal-header text-danger'
+      document.getElementById('modal-btn').innerText = 'Voltar e corrigir'
+      document.getElementById('modal-btn').className = 'btn btn-danger'
 
     }
   }
 
-  function getMesAtual() {
-    return new Date().getMonth() + 1;
-  }
-  function getAnoAtual() {
-    return new Date().getFullYear();
-  }
+}
 
-  function getNomeMes(mes) {
-    const nomeMes = mesesNumericos[mes.toLowerCase()];
-    if (nomeMes) {
-      return nomeMes.charAt(0).toUpperCase() + mes.toLowerCase().slice(1);
+class Bd {
+  constructor() {
+    let id = localStorage.getItem('id')
+
+    if (id === null) {
+      localStorage.setItem('id', 0)
     }
-    return mes; // Retorna o próprio mês se não estiver no objeto mesesNumericos
   }
 
-  function numeroParaNomeMes(numero) {
-    const meses = [
-      "Janeiro",
-      "Fevereiro",
-      "Março",
-      "Abril",
-      "Maio",
-      "Junho",
-      "Julho",
-      "Agosto",
-      "Setembro",
-      "Outubro",
-      "Novembro",
-      "Dezembro",
-    ];
+  getProximoId() {
+    let proximoId = localStorage.getItem('id')
+    return parseInt(proximoId) + 1
+  }
 
-    if (numero >= 1 && numero <= 12) {
-      return meses[numero - 1];
+  gravar(d) {
+    const dataAtual = this.dataAtual()
+
+    if (d.vencimento > dataAtual) {
+      const vencimento = new Date(d.vencimento)
+
+      const dataAtual = this.dataAtual()
+      let dataIteracao = new Date(dataAtual);
+
+      while (dataIteracao <= vencimento) {
+        let id = this.getProximoId()
+        let ano = dataIteracao.getFullYear();
+        let mes = (dataIteracao.getMonth() + 1).toString().padStart(2, '0');
+
+        const partesData = d.vencimento.split("-")
+
+        d.vencimento = `${ano}-${mes}-${partesData[2]}`
+
+        localStorage.setItem(id, JSON.stringify(d))
+        localStorage.setItem('id', id)
+
+        dataIteracao.setMonth(dataIteracao.getMonth() + 1);
+      }
+
     } else {
-      return "Mês inválido";
+      let id = this.getProximoId()
+      localStorage.setItem(id, JSON.stringify(d))
+      localStorage.setItem('id', id)
     }
   }
 
+  recuperarTodosRegistros() {
+    let contas = Array()
+    let id = localStorage.getItem('id')
+    for (let i = 1; i <= id; i++) {
 
-  function adicionarSelecaoMes(selecionado) {
-    const botoesMes = document.querySelectorAll(".mes-btn");
+      let conta = JSON.parse(localStorage.getItem(i))
 
-    botoesMes.forEach((btn) => {
-      btn.addEventListener("click", function () {
-        const mesSelecionado = this.getAttribute("data-mes");
-        const dadosMes = todasContas.filter(
-          (conta) => conta.nome === mesSelecionado
-        );
+      if (conta === null) {
+        continue
+      }
 
-        atualizarSelecaoMes(this, selecionado);
-        mostrarDetalhesMes(dadosMes, selecionado);
-      });
-    });
+      conta.id = i
+      contas.push(conta)
+    }
+    return contas
   }
 
-  function atualizarSelecaoMes(buttonSelecionado, selecionado) {
-    const botoesMes = document.querySelectorAll(".mes-btn");
+  pesquisar(conta) {
+    let contasFiltradas = []
+    contasFiltradas = this.recuperarTodosRegistros()
 
-    botoesMes.forEach((btn) => {
-      btn.classList.remove("selecionado");
-    });
-    buttonSelecionado.classList.add("selecionado");
+    if (conta.ano != '') {
+      contasFiltradas = contasFiltradas.filter(d => d.ano == conta.ano)
+    }
+
+    if (conta.mes != '') {
+      contasFiltradas = contasFiltradas.filter(d => d.mes == conta.mes)
+    }
+    if (conta.dia != '') {
+      contasFiltradas = contasFiltradas.filter(d => d.dia == conta.dia)
+    }
+    if (conta.tipo != '') {
+      contasFiltradas = contasFiltradas.filter(d => d.tipo == conta.tipo)
+    }
+    if (conta.descricao != '') {
+      contasFiltradas = contasFiltradas.filter(d => d.descricao == conta.descricao)
+    }
+    if (conta.valor != '') {
+      contasFiltradas = contasFiltradas.filter(d => d.valor == conta.valor)
+    }
+
+    return contasFiltradas
   }
 
-  // Funções relacionadas ao detalhamento e manipulação das contas do mês
-  function mostrarDetalhesMes(dadosMes, selecionado = "") {
-    const nomeMesSelecionado =
-      dadosMes.length > 0 ? getNomeMes(dadosMes[0].nome) : "";
-    if (selecionado === "contas") {
+  dataAtual() {
+    const diaAtual = new Date().getDate().toString().padStart(2, '0')
+    const mesAtual = (new Date().getMonth() + 1).toString().padStart(2, '0')
+    const anoAtual = new Date().getFullYear()
+
+    let dataAtual = `${anoAtual}-${mesAtual}-${diaAtual}`
+    return dataAtual
+  }
+
+  remover(id) {
+    localStorage.removeItem(id)
+    montarDados.montarContas("editar")
+  }
+
+}
+
+let bd = new Bd()
+
+function verificarVencimento() {
+  let tipoVencimento = document.getElementById("tipoVencimento");
+  let vencimento = document.getElementById("vencimento");
+
+  if (tipoVencimento.value == 1) {
+    vencimento.removeAttribute('disabled')
+  } else {
+    vencimento.setAttributeNode(document.createAttribute('disabled'))
+    vencimento.value = ''
+  }
+}
+
+function cadastrarConta() {
+
+  let descricao = document.getElementById("descricao");
+  let tipoConta = document.getElementById("tipoConta");
+  let tipoVencimento = document.getElementById("tipoVencimento");
+  let vencimento = document.getElementById("vencimento");
+  vencimento.value = vencimento.value === '' ? vencimento.value = bd.dataAtual() : vencimento.value
+  let preco = document.getElementById("preco");
+  let desconto = document.getElementById("desconto");
+
+  let conta = new Contas(
+    descricao.value,
+    tipoConta.value,
+    tipoVencimento.value,
+    vencimento.value,
+    preco.value,
+    desconto.value,
+  )
+
+  let limparRegistros = (descricao, tipo, tipoV, vencimento, preco, desconto) => {
+    descricao.value = ''
+    tipo.value = ''
+    tipoV.value = ''
+    vencimento.value = ''
+    preco.value = ''
+    desconto.value = ''
+  }
+
+  if (conta.validarDados()) {
+    bd.gravar(conta)
+    $('#modalRegistraDespesa').modal('show')
+    limparRegistros(descricao, tipoConta, tipoVencimento, vencimento, preco, desconto)
+  } else {
+    $('#modalRegistraDespesa').modal('show')
+  }
+
+}
+
+class MontarDados {
+  constructor(opcaoSelecionada) {
+    this.opcaoSelecionada = opcaoSelecionada
+    this.contas = bd.recuperarTodosRegistros()
+    this.tipoConta = (x) => {
+      switch (x.tipo) {
+        case '0': return ''
+        case '1': return 'Alimentação'
+        case '2': return 'Cartões'
+        case '3': return 'lazer'
+        case '4': return 'Saúde'
+        case '5': return 'Transporte'
+        case '6': return 'Casa'
+      }
+    }
+  }
+
+  montarContas = (x) => {
+
+    if (x === "contas") {
       const tabela = `
-            <h3>Contas do Mês de ${nomeMesSelecionado}</h3>
-            <br>
-            <div class="responsive-table">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Tipo</th>
-                        <th>Vencimento</th>
-                        <th>Desconto</th>
-                        <th>Preço</th>
-                        <th>Total</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    ${dadosMes
-          .map(
-            (conta) =>
-              `
-                        <tr>
-                            <td>${conta.tipoConta}</td>
-                            <td>${conta.vencimento}</td>
-                            <td>${conta.desconto.toLocaleString("pt-BR", {
-                style: "currency",
-                currency: "BRL",
-              })}</td>
-                            <td>${conta.preco.toLocaleString("pt-BR", {
-                style: "currency",
-                currency: "BRL",
-              })}</td>
-                            <td>${(conta.preco - conta.desconto).toLocaleString(
-                "pt-BR",
-                { style: "currency", currency: "BRL" }
-              )}</td>
-                        </tr>
-                    `
-          )
-          .join("")}
-                </tbody>
-            </table>
-          </div>
-        `;
+              <h4>Contas do Mês Cadastradas</h4>
+              <br>
+              <table class="table table-hover">
+                  <thead>
+                      <tr>
+                          <th scope="col">Descricao</th>
+                          <th scope="col">Tipo</th>
+                          <th scope="col">Vencimento</th>
+                          <th scope="col">Total</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      ${this.contas.map((conta) => `
+                          <tr">
+                              <td>${conta.descricao}</td>
+                              <td>${this.tipoConta(conta)}</td>
+                              <td>${conta.vencimento}</td>
+                              <td>${(conta.preco - conta.desconto).toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}</td>
+                          </tr>
+                      `).join("")}
+                  </tbody>
+              </table>
+          `;
       detalhesMes.innerHTML = tabela;
-    } else if (selecionado === "excluir") {
-      const tabela = `
-                <h3>Contas do Mês de ${nomeMesSelecionado}</h3>
-                <br>
-                <div id="contasMes">
-                    ${dadosMes
-          .map(
-            (conta) => `
-                        <label for="conta${conta.id}">
-                            <div class="conta-item">
-                                <input type="checkbox" id="conta${conta.id}" class="checkbox-conta" value="${conta.id}">
-                                <div class="conta-info">
-                                    <strong>${conta.tipoConta}</strong>
-                                    <span class="vencimento">Vencimento: ${conta.vencimento}</span>
-                                </div>
-                            </div>
-                          </label>
-                          `
-          )
-          .join("")}
+    } else if (x === 'adicionar') {
+      conteudoDashboard.innerHTML = `
+            <h4>Adicionar Conta</h4>
+            <br>
+            <form id="addForm" >
+              <div class="form-row">
+                <div class="form-group col-md-5">
+                  <label for="descricao">Descrição</label>
+                  <input id="descricao" type="text" class="form-control" id="descricao">
                 </div>
-                <button id="excluirBtn" disabled>Excluir Selecionados</button>
-                <div><button id="excAll">Excluir Todos</button></div>
-            `;
+                <div class="form-group col-md-3">
+                  <label for="tipoConta">Tipo de Conta:</label>
+                  <select id="tipoConta" class="form-control name="tipoConta">
+                    <option value="0">Tipo</option>
+                    <option value="1">Alimentação</option>
+                    <option value="2">Cartões</option>
+                    <option value="3">Lazer</option>
+                    <option value="4">Saúde</option>
+                    <option value="5">Transporte</option>
+                    <option value="6">Casa</option>
+                  </select>
+                </div>
+                <div class="form-group col-md-3">
+                  <label for="tipoVencimento">É mensalmente:</label>
+                  <select id="tipoVencimento" onclick="verificarVencimento()" class="form-control name="tipoVencimento">
+                    <option value="0">não</option>
+                    <option value="1">Sim</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-3" >
+                  <label for="vencimento">Ultimo Pagamento:</label>
+                  <input type="date" id="vencimento" class="form-control" value="" disabled name="vencimento">
+                </div>
+                <div class="form-group col-md-3">
+                  <label for="preco">Preço:</label>
+                  <input type="number" id="preco" class="form-control name="preco">
+                </div>
+                <div class="form-group col-md-3">
+                  <label for="desconto">Desconto:</label>
+                  <input type="number" id="desconto" class="form-control name="desconto">
+                </div>
+              </div>
+              <div class="form-group">
+                <button id="addBtn" class="btn btn-primary" onclick="cadastrarConta()" type="button">Adicionar</button>
+              </div>
+            </form>
+        `
+    } else if (x === 'excluir') {
+      const tabela = `
+      <h3>Escolha as contas a exlcuir!</h3>
+      <br>
+      <div id="contasMes">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+              <th scope="col"></th>
+              <th scope="col">Descrição</th>
+              <th scope="col">Vencimento</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${this.contas.map((conta) => `
+          <label>
+            <tr>
+              <td><input type="checkbox" id="conta_${conta.id}" class="checkbox-conta" value="${conta.id}"></td>
+              <td>${conta.descricao}</td>
+              <td>Data: ${conta.vencimento}</td>
+            </tr>  
+          </label>
+            `).join("")}
+        </tbody>
+      </table>
+      </div>
+      <button id="excluirBtn" disabled>Excluir Selecionados</button>
+      <div><button id="excAll">Excluir Todos</button></div>
+  `;
 
       detalhesMes.innerHTML = tabela;
 
@@ -298,67 +362,44 @@ document.addEventListener("DOMContentLoaded", function () {
       document
         .getElementById("excluirBtn")
         .addEventListener("click", function () {
-          if (
-            confirm(
-              `Tem certeza que deseja excluir ${contasSelecionadas.length === 1 ? "esta conta" : "estas contas"
-              }?`
-            )
-          ) {
-            excluirContas(contasSelecionadas);
+          if (confirm(`Tem certeza que deseja excluir ${contasSelecionadas.length === 1 ? "esta conta" : "estas contas"}?`)) {
+            contasSelecionadas.forEach(element => {
+              bd.remover(element);
+              window.location.reload()
+            });
           }
         });
       document.getElementById("excAll").addEventListener("click", function () {
         if (confirm(`Dejesa excluir todos os dados?`)) {
           localStorage.clear();
-          location.reload();
+          window.location.reload()
         }
       });
-    } else if (selecionado === "editar") {
+    } else if (x === 'editar') {
       const tabela = `
-      <h3>Contas do Mês de ${nomeMesSelecionado}</h3>
+      <h3>Editar contas</h3>
       <br>
-      <div class="responsive-table">
-      <table>
+      <table class="table">
           <thead>
-              <tr>
-                  <th>Tipo</th>
-                  <th>Vencimento</th>
-                  <th>Desconto</th>
-                  <th>Preço</th>
-                  <th>Total</th>
-                  <th>Ações</th>
-              </tr>
+            <tr>
+              <th scope="col">Descricao</th>
+              <th scope="col">Tipo</th>
+              <th scope="col">Vencimento</th>
+              <th scope="col">Total</th>
+            </tr>
           </thead>
           <tbody>
-              ${dadosMes
-          .map(
-            (conta) => `
-                      <tr>
-                          <td>${conta.tipoConta}</td>
-                          <td>${conta.vencimento}</td>
-                          <td>${conta.desconto.toLocaleString("pt-BR", {
-              style: "currency",
-              currency: "BRL",
-            })}</td>
-                          <td>${conta.preco.toLocaleString("pt-BR", {
-              style: "currency",
-              currency: "BRL",
-            })}</td>
-                          <td>${(conta.preco - conta.desconto).toLocaleString(
-              "pt-BR",
-              { style: "currency", currency: "BRL" }
-            )}</td>
-                          <td>
-                              <button class="editar-btn" data-id="${conta.id
-              }">Editar</button>
-                          </td>
-                      </tr>
-                  `
-          )
-          .join("")}
+              ${this.contas.map((conta) => `
+                <tr>
+                    <td>${conta.descricao}</td>
+                    <td>${this.tipoConta(conta)}</td>
+                    <td>${conta.vencimento}</td>
+                    <td>${(conta.preco - conta.desconto).toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}</td>
+                    <td><button class="editar-btn btn btn-success" data-id="${conta.id}"><i class="fa-solid fa-pen-to-square"></i></button></td>
+                </tr>
+              `).join("")}
           </tbody>
       </table>
-    </div>
   `;
       detalhesMes.innerHTML = tabela;
 
@@ -366,419 +407,139 @@ document.addEventListener("DOMContentLoaded", function () {
       const editarBtns = document.querySelectorAll(".editar-btn");
       editarBtns.forEach((btn) => {
         btn.addEventListener("click", function () {
-          const contaId = this.getAttribute("data-id");
-          const contaSelecionada = dadosMes.find(
-            (conta) => conta.id === contaId
-          );
-
-          // Mostra a div de edição com os detalhes da conta selecionada
-          mostrarDivEdicao(contaSelecionada);
-        });
-      });
-    } else {
-
-      let tabela = "";
-      const mesesAgrupados = {};
-
-      // Agrupa as contas por mês de vencimento
-      dadosMes.forEach((conta) => {
-        const mesVencimento = new Date(conta.vencimento).getMonth() + 1;
-        if (!mesesAgrupados[mesVencimento]) {
-          mesesAgrupados[mesVencimento] = [];
-        }
-        mesesAgrupados[mesVencimento].push(conta);
-      });
-
-      // Ordena os meses
-      const mesesOrdenados = Object.keys(mesesAgrupados).sort((a, b) => {
-        return a - b;
-      });
-
-      // Cria as tabelas ordenadas por mês
-      mesesOrdenados.forEach((mes) => {
-        tabela += `
-              <div class="tabelasTodos">
-                <h3>Contas do Mês de ${getNomeMes(numeroParaNomeMes(mes))}</h3>
-                <br>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Tipo</th>
-                            <th>Vencimento</th>
-                            <th>Desconto</th>
-                            <th>Preço</th>
-                            <th>Total</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-            `;
-        mesesAgrupados[mes].forEach((conta) => {
-          tabela += `
-                        <tr>
-                            <td>${conta.tipoConta}</td>
-                            <td>${conta.vencimento}</td>
-                            <td>${conta.desconto.toLocaleString("pt-BR", {
-            style: "currency",
-            currency: "BRL",
-          })}</td>
-                            <td>${conta.preco.toLocaleString("pt-BR", {
-            style: "currency",
-            currency: "BRL",
-          })}</td>
-                            <td>${(conta.preco - conta.desconto).toLocaleString(
-            "pt-BR",
-            { style: "currency", currency: "BRL" }
-          )}</td>
-                        </tr>
-                `;
-        });
-        tabela += `
-                    </tbody>
-                </table>
-              </div>
-                <br>
-            `;
-      });
-
-      detalhesMes.innerHTML = tabela;
-    }
-  }
-
-  function carregarMesesComContas() {
-    const mesesComContas = [
-      ...new Set(todasContas.map((conta) => conta.nome)),
-    ].sort((a, b) => {
-      const nomeA = a.charAt(0).toUpperCase() + a.slice(1).toLowerCase();
-      const nomeB = b.charAt(0).toUpperCase() + b.slice(1).toLowerCase();
-
-      return mesesNumericos[nomeA] - mesesNumericos[nomeB];
-    });
-
-    return mesesComContas;
-  }
-  function carregarContas(selecionado) {
-
-    const mesesComContas = carregarMesesComContas();
-
-    if (selecionado === "excluir" || selecionado === undefined) {
-      conteudoDashboard.innerHTML = `
-            <div id="opcoesMes" class="month">
-                ${mesesComContas
-          .map(
-            (mes) => `
-                    <button class="mes-btn cnt-btn" data-mes="${mes}">
-                        ${mes}
-                    </button>
-                `
-          )
-          .join("")}
-            </div>
-        `;
-
-      adicionarSelecaoMes(selecionado);
-    } else if (selecionado === "contas") {
-      conteudoDashboard.innerHTML = `
-            <div id="opcoesMes">
-                ${mesesComContas
-          .map(
-            (mes) => `
-                    <button class="mes-btn cnt-btn" data-mes="${mes}">
-                        ${mes}
-                    </button>
-                `
-          )
-          .join("")}
-            </div>
-        `;
-
-      adicionarSelecaoMes(selecionado);
-    } else if (selecionado === "editar") {
-      conteudoDashboard.innerHTML = `
-      <div id="opcoesMes">
-          ${mesesComContas
-          .map(
-            (mes) => `
-              <button class="mes-btn cnt-btn" data-mes="${mes}">
-                  ${mes}
-              </button>
-          `
-          )
-          .join("")}
-      </div>
-  `;
-      adicionarSelecaoMes(selecionado);
-    } else {
-      mostrarDetalhesMes(todasContas, "todos");
-    }
-  }
-
-  // mostrar div de edição
-  function mostrarDivEdicao(conta) {
-    // Verifica se a div de edição já está presente no DOM
-    const divEdicaoExistente = document.querySelector(".edicao-conta");
-
-    // Se a div de edição já estiver presente, remove-a
-
-    if (divEdicaoExistente) {
-
-      divEdicaoExistente.remove();
-      return; // Retorna para evitar a criação de uma nova div de edição
-    }
-
-    // Cria uma div para edição
-    const divEdicao = document.createElement("div");
-    divEdicao.classList.add("edicao-conta");
-
-    // Cria um formulário para edição
-    const formEdicao = document.createElement("form");
-    formEdicao.innerHTML = `
-        <label for="tipoContaEdit">Tipo de Conta:</label>
-        <input type="text" id="tipoContaEdit" name="tipoContaEdit" value="${conta.tipoConta}"><br><br>
-        <label for="descontoEdit">Desconto:</label>
-        <input type="number" id="descontoEdit" name="descontoEdit" value="${conta.desconto}"><br><br>
-        <label for="precoEdit">Preço:</label>
-        <input type="number" id="precoEdit" name="precoEdit" value="${conta.preco}"><br><br>
-        <button type="button" id="salvarEdicaoBtn">Salvar</button>
-        <button type="button" id="cancelarEdicaoBtn">Cancelar</button>
-    `;
-
-
-
-    divEdicao.appendChild(formEdicao);
-
-    // Adiciona a div de edição ao DOM
-    conteudoDashboard.appendChild(divEdicao);
-
-    // Adiciona um event listener para o botão "Salvar"
-    const salvarEdicaoBtn = document.getElementById("salvarEdicaoBtn");
-    const cancelarEdicaoBtn = document.getElementById("cancelarEdicaoBtn");
-
-    salvarEdicaoBtn.addEventListener("click", function () {
-      // Lógica para salvar as edições
-      const tipoContaEdit = document.getElementById("tipoContaEdit").value;
-      const descontoEdit = parseFloat(
-        document.getElementById("descontoEdit").value
-      );
-      const precoEdit = parseFloat(document.getElementById("precoEdit").value);
-
-      // Atualiza os dados da conta selecionada
-      conta.tipoConta = tipoContaEdit;
-      conta.desconto = descontoEdit;
-      conta.preco = precoEdit;
-
-      // Atualiza o array de todas as contas com a conta editada
-      todasContas = todasContas.map((c) => {
-        if (c.id === conta.id) {
-          return conta;
-        } else {
-          return c;
-        }
-      });
-
-      // Salva as contas atualizadas no cache (localStorage)
-      localStorage.setItem("todasContas", JSON.stringify(todasContas));
-
-      // Atualiza a visualização da tabela com os novos dados
-      limparConteudoDashboard();
-      carregarContas("editar");
-
-      // Remove a div de edição
-      divEdicao.remove();
-    });
-
-    cancelarEdicaoBtn.addEventListener("click", function () {
-      divEdicao.remove();
-    })
-  }
-
-  function carregarFormularioAdicao() {
-    conteudoDashboard.innerHTML = `
-            <h3>Adicionar Conta</h3>
-            <form id="addForm">
-                <label for="tipoConta">Tipo de Conta:</label>
-                <input type="text" id="tipoConta" name="tipoConta"><br><br>
-                <label for="vencimento">Vencimento:</label>
-                <input type="date" id="vencimento" name="vencimento"><br><br>
-                <label for="desconto">Desconto:</label>
-                <input type="number" id="desconto" name="desconto"><br><br>
-                <label for="preco">Preço:</label>
-                <input type="number" id="preco" name="preco"><br><br>
-                <button type="button" id="addBtn">Adicionar</button>
-            </form>
-        `;
-
-    handleAdicionarConta();
-  }
-
-  function validarFormularioAdicao() {
-    const tipoConta = document.getElementById("tipoConta").value;
-    const vencimento = document.getElementById("vencimento").value;
-    const desconto = document.getElementById("desconto").value;
-    const preco = document.getElementById("preco").value;
-
-    if (!tipoConta || !vencimento || !desconto || !preco) {
-      alert("Por favor, preencha todos os campos.");
-      return false;
-    }
-
-    return true;
-  }
-
-  function adicionarContaAoArray(
-    id,
-    contasAtualizadas,
-    tipoConta,
-    vencimento,
-    desconto,
-    preco
-  ) {
-    if (!Array.isArray(contasAtualizadas)) {
-      contasAtualizadas = []; // Se não for um array, inicializa como um array vazio
-    }
-
-    contasAtualizadas.push({
-      id: id,
-      nome: vencimento.toLocaleString("pt-BR", { month: "long" }).toLowerCase(),
-      tipoConta: tipoConta,
-      vencimento: vencimento.toISOString().split("T")[0],
-      desconto: desconto,
-      preco: preco,
-    });
-  }
-
-  function generateUUID() {
-    let dt = new Date().getTime();
-    const uuid = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(
-      /[xy]/g,
-      function (c) {
-        const r = (dt + Math.random() * 16) % 16 | 0;
-        dt = Math.floor(dt / 16);
-        return (c === "x" ? r : (r & 0x3) | 0x8).toString(16);
-      }
-    );
-    return uuid;
-  }
-  // atualiza array
-
-  function handleAdicionarConta() {
-    const addBtn = document.getElementById("addBtn");
-
-    addBtn.addEventListener("click", function () {
-      if (!validarFormularioAdicao()) {
-        return;
-      }
-
-      let contador = JSON.parse(localStorage.getItem("contador")) || 0;
-      contador++;
-
-
-      const tipoConta = document.getElementById("tipoConta").value;
-      const vencimento = new Date(document.getElementById("vencimento").value);
-      const desconto = parseFloat(document.getElementById("desconto").value);
-      const preco = parseFloat(document.getElementById("preco").value);
-
-      const mesAtual = getMesAtual();
-      const anoAtual = getAnoAtual();
-
-      let contasAtualizadas = [...todasContas];
-
-
-      if (vencimento.getFullYear() > anoAtual) {
-
-        let dataTemp = new Date(vencimento);
-
-        if (mesAtual <= 12) {
-
-          let i = 0
-          while (dataTemp.getMonth() + 1 < 12) {
-            i++
-
-            const id = generateUUID();
-
-            if (dataTemp.getMonth() === vencimento.getMonth() + 1) {
-              break;
-            } else {
-              dataTemp.setMonth(dataTemp.getMonth() - 1);
-
-              adicionarContaAoArray(
-                id,
-                contasAtualizadas,
-                tipoConta,
-                dataTemp,
-                desconto,
-                preco
-              );
+          const contas = bd.recuperarTodosRegistros()
+          const contaId = parseInt(this.getAttribute("data-id"))
+          contas.forEach(conta => {
+            const contaSelecionada = () => {
+              if (conta.id === contaId) {
+                mostrarDivEdicao(conta);
+              }
             }
-          }
-        }
+            contaSelecionada()
 
-        while (dataTemp.getMonth() + 1 > 12) {
-
-          const id = generateUUID();
-
-          if (dataTemp.getMonth() === vencimento.getMonth()) {
-            break;
-          } else {
-            dataTemp.setMonth(dataTemp.getMonth() - 1);
-            adicionarContaAoArray(
-              id,
-              contasAtualizadas,
-              tipoConta,
-              dataTemp,
-              desconto,
-              preco
-            );
-          }
-
-        }
-
-
-      }
-
-      // Adiciona a nova conta ao array de contas
-      const id = generateUUID();
-      adicionarContaAoArray(
-        id,
-        contasAtualizadas,
-        tipoConta,
-        vencimento,
-        desconto,
-        preco
-      );
-
-      // Salva as contas atualizadas no localStorage
-      localStorage.setItem("todasContas", JSON.stringify(contasAtualizadas));
-      todasContas = contasAtualizadas;
-
-      // Recarrega as contas
-      carregarContas("contas");
-    });
+          });
+        });
+      });
+    }
   }
+}
 
-  // Função para excluir contas selecionadas
-  function excluirContas(contasSelecionadas) {
-    const novasContas = todasContas.filter(
-      (conta) => !contasSelecionadas.includes(conta.id)
-    );
-    let selecionada = "excluir";
-    todasContas = novasContas;
+let montarDados = new MontarDados()
 
-    localStorage.setItem("todasContas", JSON.stringify(todasContas));
-    limparConteudoDashboard();
-    carregarContas(selecionada);
-  }
-  //limpar dashboard 
-  function limparConteudoDashboard() {
-    conteudoDashboard.innerHTML = "";
-    detalhesMes.innerHTML = "";
-  }
-
-  botoesDashboard.forEach((btn) => {
-    btn.addEventListener("click", function () {
-      limparConteudoDashboard();
-      const opcaoSelecionada = this.getAttribute("data-option");
-      // carregar conteudo
-      carregarConteudoDashboard(opcaoSelecionada);
-    });
+botoesDashboard.forEach((btn) => {
+  btn.addEventListener("click", function () {
+    limparConteudoDashboard()
+    const opcaoSelecionada = this.getAttribute("data-option")
+    montarDados.montarContas(opcaoSelecionada)
   });
 });
+
+function mostrarDivEdicao(conta) {
+  const divEdicaoExistente = document.querySelector(".edicao-conta");
+
+  if (divEdicaoExistente) {
+    divEdicaoExistente.remove();
+    return;
+  }
+
+  const divEdicao = document.createElement("div")
+  divEdicao.classList.add("edicao-conta")
+
+  // Cria um formulário para edição
+  const formEdicao = document.createElement("form")
+  formEdicao.innerHTML = `
+      <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="descricaoEdit">Descrição:</label>
+        <input type="text" id="descricaoEdit" class="form-control" name="descricaoEdit" value="${conta.descricao}">
+      </div>
+        <div class="form-group col-md-3">
+          <label for="descontoEdit">Desconto:</label>
+          <input type="number" id="descontoEdit" class="form-control" name="descontoEdit" value="${conta.desconto}">
+        </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="precoEdit">Preço:</label>
+            <input type="number" id="precoEdit" class="form-control" name="precoEdit" value="${conta.preco}">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="vencEdit">Vencimento:</label>
+            <input type="date" id="vencEdit" class="form-control" name="vencEdit" value="${conta.vencimento}">
+          </div>
+        </div>
+        <button type="button" id="salvarEdicaoBtn" class="btn btn-primary">Salvar</button>
+        <button type="button" id="cancelarEdicaoBtn" class="btn btn-danger">Cancelar</button>
+      </div>
+    `
+
+  divEdicao.appendChild(formEdicao);
+
+  conteudoDashboard.appendChild(divEdicao);
+
+  const salvarEdicaoBtn = document.getElementById("salvarEdicaoBtn");
+  const cancelarEdicaoBtn = document.getElementById("cancelarEdicaoBtn");
+
+  salvarEdicaoBtn.addEventListener("click", function () {
+
+    let descricao = document.getElementById("descricaoEdit");
+    let vencimento = document.getElementById("vencEdit");
+    vencimento.value = vencimento.value === '' ? vencimento.value = bd.dataAtual() : vencimento.value
+    let desconto = document.getElementById("descontoEdit");
+    let preco = document.getElementById("precoEdit");
+
+    let contaEdit = new Contas(
+      descricao.value,
+      tipoConta = conta.tipo,
+      tipov = conta.tipoVencimento,
+      vencimento.value,
+      preco.value,
+      desconto.value,
+    )
+
+    contaEdit.descricao = descricao.value
+    contaEdit.tipoConta = tipoConta
+    contaEdit.tipoVencimento = tipov
+    contaEdit.vencimento = vencimento.value
+    contaEdit.preco = preco.value
+    contaEdit.desconto = desconto.value
+
+    bd.remover(conta.id)
+    bd.gravar(contaEdit)
+    window.location.reload()
+  });
+
+  cancelarEdicaoBtn.addEventListener("click", function () {
+    divEdicao.remove();
+  })
+}
+
+//limpar dashboard 
+function limparConteudoDashboard() {
+  conteudoDashboard.innerHTML = "";
+  detalhesMes.innerHTML = "";
+}
+
+
+// this.descricao = descricao
+//     this.tipo = tipo
+//     this.tipoVencimento = tipoV
+//     this.vencimento = vencimento
+//     this.preco = preco
+//     this.desconto = desconto
+// function pesquisarContas() {
+//   let descricao = document.getElementById('descricao').value
+//   let tipo = document.getElementById('tipoConta').value
+//   let tipoVencimento = document.getElementById('tipoVencimento').value
+//   let vencimento = document.getElementById('vencimento').value
+//   vencimento.value = vencimento.value === '' ? vencimento.value = bd.dataAtual() : vencimento.value
+//   let preco = document.getElementById('preco').value
+//   let desconto = document.getElementById('desconto').value
+
+//   let conta = new Contas(descricao, tipo, tipoVencimento, vencimento, preco, desconto)
+
+//   let contas = bd.pesquisar(conta)
+
+//   carregaListaDepesas(contas, true)
+
+// }
