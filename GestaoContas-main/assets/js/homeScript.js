@@ -62,9 +62,20 @@ class Bd {
     return parseInt(proximoId) + 1
   }
 
+  splitMes(x, data) {
+    if (x) {
+      const partesData = data.split("-")
+      return `${partesData[2]}/${partesData[1]}/${partesData[0]}`
+    } else{
+      const partesData = data.split("-")
+      return partesData
+    }
+  }
+
   gravar(d) {
     const dataAtual = this.dataAtual()
 
+    
     if (d.vencimento > dataAtual) {
       const vencimento = new Date(d.vencimento)
 
@@ -76,7 +87,7 @@ class Bd {
         let ano = dataIteracao.getFullYear();
         let mes = (dataIteracao.getMonth() + 1).toString().padStart(2, '0');
 
-        const partesData = d.vencimento.split("-")
+        const partesData = this.splitMes(false, d.vencimento)
 
         d.vencimento = `${ano}-${mes}-${partesData[2]}`
 
@@ -200,6 +211,8 @@ function cadastrarConta() {
     $('#modalRegistraDespesa').modal('show')
     limparRegistros(descricao, tipoConta, tipoVencimento, vencimento, preco, desconto)
   } else {
+    console.log('aqui');
+
     $('#modalRegistraDespesa').modal('show')
   }
 
@@ -222,11 +235,13 @@ class MontarDados {
     }
   }
 
+
+
   montarContas = (x) => {
 
     if (x === "contas") {
       const tabela = `
-              <h4>Contas do Mês Cadastradas</h4>
+              <h4>Contas Cadastradas</h4>
               <br>
               <table class="table table-hover">
                   <thead>
@@ -242,7 +257,7 @@ class MontarDados {
                           <tr">
                               <td>${conta.descricao}</td>
                               <td>${this.tipoConta(conta)}</td>
-                              <td>${conta.vencimento}</td>
+                              <td>${bd.splitMes(true,conta.vencimento)}</td>
                               <td>${(conta.preco - conta.desconto).toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}</td>
                           </tr>
                       `).join("")}
@@ -301,7 +316,7 @@ class MontarDados {
         `
     } else if (x === 'excluir') {
       const tabela = `
-      <h3>Escolha as contas a exlcuir!</h3>
+      <h4>Escolha as contas a exlcuir!</h4>
       <br>
       <div id="contasMes">
       <table class="table table-hover">
@@ -318,7 +333,7 @@ class MontarDados {
             <tr>
               <td><input type="checkbox" id="conta_${conta.id}" class="checkbox-conta" value="${conta.id}"></td>
               <td>${conta.descricao}</td>
-              <td>Data: ${conta.vencimento}</td>
+              <td>${bd.splitMes(true,conta.vencimento)}</td>
             </tr>  
           </label>
             `).join("")}
@@ -377,7 +392,7 @@ class MontarDados {
       });
     } else if (x === 'editar') {
       const tabela = `
-      <h3>Editar contas</h3>
+      <h4>Editar contas</h4>
       <br>
       <table class="table">
           <thead>
@@ -386,6 +401,7 @@ class MontarDados {
               <th scope="col">Tipo</th>
               <th scope="col">Vencimento</th>
               <th scope="col">Total</th>
+              <th scope="col"></th>
             </tr>
           </thead>
           <tbody>
@@ -393,7 +409,7 @@ class MontarDados {
                 <tr>
                     <td>${conta.descricao}</td>
                     <td>${this.tipoConta(conta)}</td>
-                    <td>${conta.vencimento}</td>
+                    <td>${bd.splitMes(true,conta.vencimento)}</td>
                     <td>${(conta.preco - conta.desconto).toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}</td>
                     <td><button class="editar-btn btn btn-success" data-id="${conta.id}"><i class="fa-solid fa-pen-to-square"></i></button></td>
                 </tr>

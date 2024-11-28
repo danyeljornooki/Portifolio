@@ -18,43 +18,37 @@
 </head>
 
 <body>
-    <div class="row">
-        <nav id="menu" class="bg-primary col-3 col-xl-2 pb-3">
-            <div class="row justify-content-between p-4">
-                <div class="col-1">
-                    <a href=""><i class="fa-solid fa-city text-light fa-xl"></i></a>
-                </div>
-                <div class="col-md-1 mr-4">
-                    <a href="../index.html">
-                        <i class="fa-solid fa-right-from-bracket text-light fa-xl m-3"></i>
-                    </a>
-                </div>
-
+    <header class="header">
+        <nav id="menu" class="navbar navbar-expand-lg navbar-transparente bg-primary">
+            <a href="" class="navbar-brand"><i class="fa-solid fa-city text-light fa-xl"></i></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span><i class="fa-solid fa-bars text-light"></i></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul id="menu-dashboard" class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link dashboard-link text-light" data-option="contas">Contas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link dashboard-link text-light" data-option="adicionar">Adicionar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link dashboard-link text-light" data-option="excluir">Excluir</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link dashboard-link text-light" data-option="editar">Editar</a>
+                    </li>
+                </ul>
             </div>
-            <ul id="menu-dashboard" class="nav flex-column">
-                <li class="nav-item">
-                    <a class="dashboard-link nav-link text-light mt-2" data-option="contas">Contas</a>
-                </li>
-                <li class="nav-item">
-                    <a class="dashboard-link nav-link text-light mt-2" data-option="adicionar">Adicionar</a>
-                </li>
-                <li class="nav-item">
-                    <a class="dashboard-link nav-link text-light mt-2" data-option="excluir">Excluir</a>
-                </li>
-                <li class="nav-item">
-                    <a class="dashboard-link nav-link text-light mt-2" data-option="editar">Editar</a>
-                </li>
-            </ul>
-    </div>
-    </nav>
-    <div class="col-md-9">
-        <div id="dashboardContent" class="container mt-5">
-        </div>
+            <div>
+                <a href="../index.html"><i class="fa-solid fa-right-from-bracket text-light fa-xl m-3"></i></a>
+            </div>
+        </nav>
+    </header>
+    <div id="dashboardContent" class="container mt-5"></div>
 
-        <div id="monthDetails">
-        </div>
-    </div>
-    </div>
+    <div id="monthDetails"></div>
 
     <!-- Modal -->
     <div class="modal fade" id="modalRegistraDespesa" tabindex="-1" role="dialog" aria-labelledby="registraDespesaLabel"
