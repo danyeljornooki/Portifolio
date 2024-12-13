@@ -359,7 +359,7 @@ class MontarDados {
           <div class="col-md-1">
             <span class="btn btn-primary" onclick="atualizar()"><i class="fa-solid fa-arrows-rotate"></i></span>
           </div>
-          <div class="col-md-2">
+          <div class="col-md-3">
             <button id="excAll">Excluir Todos</button>
           </div>
         </div>

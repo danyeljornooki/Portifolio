@@ -1,0 +1,257 @@
+:root {
+    --color: rgb(218, 57, 43);
+    --color2: rgb(218, 57, 43, 0.27);
+    --color_15: rgb(39, 36, 67);
+    --font: normal normal bold 16px/1.4em roboto-thin, roboto, sans-serif;
+}
+
+* {
+    font-family: "Roboto", Arial, sans-serif;
+}
+
+body,
+html {
+    z-index: 1;
+    width: 100%;
+    /*   margin: 0; */
+    font-family: var(--font);
+    overflow-x: hidden;
+}
+
+.bg-red {
+    background-color: rgb(218, 57, 43);
+}
+
+.bg-red-para {
+    background: url('https://static.wixstatic.com/media/c837a6_cbd9440d3fce436c913d12b16be55401~mv2.jpg/v1/fill/w_980,h_825,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/c837a6_cbd9440d3fce436c913d12b16be55401~mv2.jpg');
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.bg-blue-para {
+    background: url('https://static.wixstatic.com/media/c837a6_0d97f82987d44ed49ee37d4150d890a5~mv2.jpg/v1/fill/w_980,h_825,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/c837a6_0d97f82987d44ed49ee37d4150d890a5~mv2.jpg');
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+
+.mt-10 {
+    margin-top: 10rem;
+}
+
+.mp-10 {
+    padding-bottom: 10rem;
+}
+
+/* ----------Nav--------- */
+
+
+.active-white {
+    background: var(--color) !important;
+    color: white !important;
+}
+
+.btn-nav {
+    width: 100%;
+    cursor: pointer;
+    transition: background 0.5s;
+    border: none;
+}
+
+.btn-nav:hover {
+    background: var(--color);
+    color: white;
+}
+
+.btn-nav:focus {
+    outline: none;
+}
+
+.radius-left {
+    border-bottom-left-radius: .25rem;
+}
+
+.radius-right {
+    border-bottom-right-radius: .25rem;
+}
+
+
+
+/* --------home--------- */
+
+#home_background {
+    height: 100vh;
+    background: url('../img/backgroundHome.avif') no-repeat, #E6E6E6;
+    background-position-x: -45rem;
+
+}
+
+
+.home-text {
+    height: 75vh;
+    align-items: center;
+    color: var(--color_15);
+}
+
+.home-text h1 {
+    font-weight: 700;
+    font-size: 70px;
+    margin-bottom: 0;
+}
+
+
+
+.btn-home {
+    border-radius: 7px;
+    padding: 0;
+    cursor: pointer;
+    border: none;
+    width: 9rem;
+    height: 3rem;
+    cursor: pointer;
+}
+
+.card-games {
+    height: 18rem;
+    width: 100%;
+    padding-right: 0;
+    margin-top: -13rem;
+}
+
+.img-card {
+    background-color: #FCFF72;
+    width: -webkit-fill-available;
+    border-radius: 15px;
+    object-fit: cover;
+    position: absolute;
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.text-card {
+    border-radius: 15px;
+    display: flex;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    color: white;
+    justify-content: flex-end;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.text-card h3 {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.text-card p {
+    font-size: 1rem;
+}
+
+.gradient-hover {
+    background: linear-gradient(180deg, rgba(218, 57, 43, 0), rgba(218, 57, 43, 0.8)) !important;
+}
+
+
+.carousel-item {
+    height: 45vh;
+}
+
+#carouselCards {
+    margin-top: -13rem;
+}
+
+/* SOBRE */
+
+#sobre {
+    background-color: #E6E6E6;
+}
+
+.img-perso-card {
+    position: absolute;
+    left: -50px;
+    bottom: -46px;
+}
+
+.games-us img {
+    border-radius: 23px;
+    border: 8px solid #ffffff;
+    box-shadow: 1px 2px 5px var(--color2);
+}
+
+.bg-cell {
+    background: url('https://static.wixstatic.com/media/c837a6_1cf50738638a41d680ed4dc3db5e5492~mv2.png/v1/fill/w_1903,h_1182,al_c,q_95,usm_0.66_1.00_0.01,enc_avif,quality_auto/c837a6_1cf50738638a41d680ed4dc3db5e5492~mv2.png') no-repeat center center;
+    background-size: cover;
+}
+
+.shadow-red {
+    border-radius: 15px;
+    box-shadow: 1px 2px 5px var(--color2);
+}
+
+/* ------------------------------------- */
+
+.form-mt {
+    margin-top: -18rem;
+}
+
+
+/* MEDIA */
+
+
+@media screen and (max-width: 580px) {
+
+    .btn-nav {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    #home_background {
+        background-position-x: -80rem;
+    }
+
+}
+
+@media screen and (max-width: 920px) {
+    .home-text h1 {
+        font-weight: 700;
+        font-size: 50px;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    #home_background {
+        background-position-x: center;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .card-games {
+        height: auto;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .card-games {
+        margin-top: -3rem;
+        margin-bottom: 4rem;
+        height: 18rem;
+    }
+
+    .img-card {
+        width: 100%;
+    }
+}
