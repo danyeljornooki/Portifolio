@@ -192,7 +192,7 @@ html {
 }
 
 .bg-cell {
-    background: url('https://static.wixstatic.com/media/c837a6_1cf50738638a41d680ed4dc3db5e5492~mv2.png/v1/fill/w_1903,h_1182,al_c,q_95,usm_0.66_1.00_0.01,enc_avif,quality_auto/c837a6_1cf50738638a41d680ed4dc3db5e5492~mv2.png') no-repeat center center;
+    background: url('https://static.wixstatic.com/media/c837a6_1cf50738638a41d680ed4dc3db5e5492~mv2.png/v1/fill/w_1903,h_1182,al_c,q_95,usm_0.66_1.00_0.01,enc_avif,quality_auto/c837a6_1cf50738638a41d680ed4dc3db5e5492~mv2.png') no-repeat center top;
     background-size: cover;
 }
 
